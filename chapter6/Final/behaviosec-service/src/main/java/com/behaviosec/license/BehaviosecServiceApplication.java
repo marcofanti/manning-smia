@@ -31,14 +31,6 @@ public class BehaviosecServiceApplication {
 		localeResolver.setDefaultLocale(Locale.US);
 		return localeResolver;
 	}
-	@Bean
-	public ResourceBundleMessageSource messageSource() {
-		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-		messageSource.setUseCodeAsDefaultMessage(true);
-		messageSource.setBasenames("messages");
-		return messageSource;
-	}
-
 	@LoadBalanced
 	@Bean
 	public RestTemplate getRestTemplate(){
