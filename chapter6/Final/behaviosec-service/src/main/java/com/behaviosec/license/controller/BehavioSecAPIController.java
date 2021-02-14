@@ -19,10 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.behaviosec.license.model.License;
-import com.behaviosec.license.service.LicenseService;
-import com.behaviosec.license.utils.UserContextHolder;
-
 @RestController
 @RequestMapping(value="BehavioSenseAPI")
 public class BehavioSecAPIController {
@@ -30,13 +26,10 @@ public class BehavioSecAPIController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(BehavioSecAPIController.class);
 
-	@Autowired
-	private LicenseService licenseService;
+	@RequestMapping(value="/",method = RequestMethod.GET)
+	public String getLicensesWithClient() {
 
-	@RequestMapping(value="/{userId}",method = RequestMethod.GET)
-	public String getLicensesWithClient( @PathVariable("userId") String userId) {
-
-		return "User is " + userId;
+		return "User is Marco";
 	}
 /*
 	@PutMapping
