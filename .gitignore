@@ -13,6 +13,8 @@
 *.iws
 .idea/
 
+*.csv
+
 .DS_Store/
 /target
 
