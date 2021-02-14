@@ -10,4 +10,4 @@ spec:
   - name: "8071"
     port: 8071
     targetPort: 8071
-    nodePort: 31000
+    nodePort: 31400

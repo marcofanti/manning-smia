@@ -9,8 +9,8 @@ services:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB:       "ostock_dev"
     volumes:
-        - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
-        - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/1-init.sql
+      - ./data.sql:/docker-entrypoint-initdb.d/2-data.sql
     networks:
       backend:
         aliases:
@@ -21,23 +21,26 @@ services:
       timeout: 5s
       retries: 5
   configserver:
-    image: ostock/configserver:0.0.1-SNAPSHOT
+    image: configserver:0.0.1-SNAPSHOT
     ports:
-       - "8071:8071"
+      - "8071:8071"
     environment:
-      ENCRYPT_KEY: "fje83Ki8403Iod87dne7Yjsl3THueh48jfuO9j4U2hf64Lo"
+      ENCRYPT_KEY: "S9HP4v88kDuFFzh9DSQB"
     networks:
       backend:
         aliases:
           - "configserver"
   licensingservice:
-    image: ostock/licensing-service:0.0.2-SNAPSHOT
+    image: licensing-service:0.0.2-SNAPSHOT
     environment:
+      spring.cloud.config.uri: http://configserver:8071
+      spring.cloud.config.fail-fast: "true"
+      spring.cloud.config.retry.max-attempts: 5
+      spring.cloud.config.retry.initial-interval: 1500
+      spring.cloud.config.retry.multiplier: 1.5
+      spring.datasource.password: "RLfepWQZUngNgxDmSB89"
       PROFILE: "dev"
-      CONFIGSERVER_URI: "http://configserver:8071"
-      CONFIGSERVER_PORT:   "8071"
-      DATABASESERVER_PORT: "5432"
-      ENCRYPT_KEY:       "IMSYMMETRIC"
+      ENCRYPT_KEY: "S9HP4v88kDuFFzh9DSQB"
     depends_on:
       database:
         condition: service_healthy

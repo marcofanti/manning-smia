@@ -53,3 +53,24 @@ I'd like you to send me an email on <illaryhs@gmail.com> about anything you'd wa
 
 ### Contributing
 Feel free to file an issue if it doesn't work for your code sample. Thanks.
+
+
+mvn  spring-boot:build-image
+
+
+configserver:0.0.1-SNAPSHOT
+licensing-service:0.0.2-SNAPSHOT
+
+docker tag configserver:0.0.1-SNAPSHOT cacofanti/configserver:0.0.1-SNAPSHOT
+
+docker push  cacofanti/configserver:0.0.1-SNAPSHOT
+
+docker tag licensing-service:0.0.2-SNAPSHOT cacofanti/licensing-service:0.0.2-SNAPSHOT
+docker push licensing-service:0.0.2-SNAPSHOT
+
+
+RLfepWQZUngNgxDmSB89
+S9HP4v88kDuFFzh9DSQB
+BvgXSU6MHs3gsER8zCJM
+wbNPHnHn4UzBTpDY8Utg
+tLbvHq5ysaNpgdQby8Cc

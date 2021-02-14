@@ -1,0 +1,21 @@
+server:
+   port: 8071
+   
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/marcofanti/config.git
+          #searchPaths: licensingservice
+  
+#Enable all Spring Boot Actuator endpoints.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

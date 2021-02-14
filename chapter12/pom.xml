@@ -28,6 +28,7 @@
     <module>gatewayserver</module>
     <module>authentication-service</module>
     <module>licensing-service</module>
+    <module>behaviosec-service</module>
     <module>organization-service</module>
   </modules>
   <build>

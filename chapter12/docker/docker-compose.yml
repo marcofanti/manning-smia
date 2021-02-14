@@ -22,7 +22,7 @@ services:
       timeout: 5s
       retries: 5
   configserver:
-    image: ostock/configserver:chapter12
+    image: cacofanti/configserver:chapter12
     container_name: configServer
     ports:
        - "8071:8071"
@@ -33,7 +33,7 @@ services:
         aliases:
           - "configserver"
   eurekaserver:
-    image: ostock/eurekaserver:chapter12
+    image: cacofanti/eurekaserver:chapter12
     container_name: eurekaServer
     ports:
       - "8070:8070"
@@ -47,7 +47,7 @@ services:
         aliases:
           - "eurekaserver"
   gatewayserver:
-    image: ostock/gatewayserver:chapter12
+    image: cacofanti/gatewayserver:chapter12
     container_name: gateway
     ports:
       - "8072:8072"
@@ -106,7 +106,7 @@ services:
         aliases:
           - "redis"
   authenticationservice:
-    image: ostock/authentication-service:chapter12
+    image: cacofanti/authentication-service:chapter12
     container_name: authentication-service
     environment:
       PROFILE: "dev"
@@ -125,7 +125,7 @@ services:
         aliases:
           - "authenticationservice"
   licensingservice:
-    image: ostock/licensing-service:chapter12
+    image: cacofanti/licensing-service:chapter12
     container_name: licensing-service
     environment:
       PROFILE: "dev"
@@ -146,11 +146,37 @@ services:
       - "8080:8080"
     networks:
       - backend
+  behaviosecservice:
+    image: cacofanti/behaviosec-service:1
+    container_name: behaviosec-service
+    environment:
+      PROFILE: "dev"
+      spring.cloud.config.uri: "http://configserver:8071"
+      spring.cloud.config.fail-fast: "true"
+      CONFIGSERVER_URI: "http://configserver:8071"
+      CONFIGSERVER_PORT:   "8071"
+      DATABASESERVER_PORT: "5432"
+      ENCRYPT_KEY:       "IMSYMMETRIC"
+    depends_on:
+      database:
+        condition: service_healthy
+      configserver:
+        condition: service_started
+      authenticationservice:
+        condition: service_started
+      kafkaserver:
+        condition: service_started
+    ports:
+      - "8088:8080"
+    networks:
+      - backend
   organizationservice:
-    image: ostock/organization-service:chapter12
+    image: cacofanti/organization-service:chapter12
     container_name: organization-service
     environment:
       PROFILE: "dev"
+      spring.cloud.config.uri: "http://configserver:8071"
+      spring.cloud.config.fail-fast: "true"
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT:   "8071"
       DATABASESERVER_PORT: "5432"

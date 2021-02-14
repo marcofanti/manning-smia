@@ -36,8 +36,8 @@ spec:
           value: IMSYMMETRIC
         - name: PROFILE
           value: dev
-        image: 81XXXXXXXX3.dkr.ecr.us-east-2.amazonaws.com/ostock/organization-service:latest
-        imagePullPolicy: ""
+        image: cacofanti/organization-service:chapter12
+        imagePullPolicy: "Always"
         name: organization-service
         ports:
         - containerPort: 8081

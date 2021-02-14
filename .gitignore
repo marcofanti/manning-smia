@@ -51,5 +51,9 @@ target/
 /.nb-gradle/
 build/
 
+*.pem
+*.txt
+
+
 ### VS Code ###
 .vscode/

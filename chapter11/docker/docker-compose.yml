@@ -110,6 +110,8 @@ services:
     container_name: licensing-service
     environment:
       PROFILE: "dev"
+      spring.cloud.config.uri: "http://configserver:8071"
+      spring.cloud.config.fail-fast: "true"
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT:   "8071"
       DATABASESERVER_PORT: "5432"
@@ -130,6 +132,8 @@ services:
     container_name: organization-service
     environment:
       PROFILE: "dev"
+      spring.cloud.config.uri: "http://configserver:8071"
+      spring.cloud.config.fail-fast: "true"
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT:   "8071"
       DATABASESERVER_PORT: "5432"

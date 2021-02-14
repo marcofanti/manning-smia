@@ -21,7 +21,7 @@ services:
       timeout: 5s
       retries: 5
   configserver:
-    image: ostock/configserver:0.0.1-SNAPSHOT
+    image: cacofanti/configserver:0.0.1-SNAPSHOT
     ports:
        - "8071:8071"
     environment:
@@ -31,7 +31,7 @@ services:
         aliases:
           - "configserver"
   eurekaserver:
-    image: ostock/eurekaserver:0.0.1-SNAPSHOT
+    image: cacofanti/eurekaserver:0.0.1-SNAPSHOT
     ports:
       - "8070:8070"
     depends_on:
@@ -44,13 +44,15 @@ services:
         aliases:
           - "eurekaserver"
   licensingservice:
-    image: ostock/licensing-service:0.0.3-SNAPSHOT
+    image: cacofanti/licensing-service:0.0.3-SNAPSHOT
     environment:
       PROFILE: "dev"
+      spring.cloud.config.uri: http://configserver:8071
+      spring.cloud.config.fail-fast: "true"
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT:   "8071"
       DATABASESERVER_PORT: "5432"
-      ENCRYPT_KEY:       "IMSYMMETRIC"
+      ENCRYPT_KEY:       "fje83Ki8403Iod87dne7Yjsl3THueh48jfuO9j4U2hf64Lo"
     depends_on:
       database:
         condition: service_healthy
@@ -61,9 +63,11 @@ services:
     networks:
       - backend
   organizationservice:
-    image: ostock/organization-service:0.0.1-SNAPSHOT
+    image: cacofanti/organization-service:0.0.1-SNAPSHOT
     environment:
       PROFILE: "dev"
+      spring.cloud.config.uri: http://configserver:8071
+      spring.cloud.config.fail-fast: "true"
       CONFIGSERVER_URI: "http://configserver:8071"
       CONFIGSERVER_PORT:   "8071"
       DATABASESERVER_PORT: "5432"

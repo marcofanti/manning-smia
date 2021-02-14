@@ -5,7 +5,7 @@ metadata:
     app: postgres-service
   name: postgres-service
 spec:
-  externalName: ostock-aws.cjuqpwnyahhy.us-east-2.rds.amazonaws.com
+  externalName: database-1.catjun7yw9ke.us-east-1.rds.amazonaws.com
   selector:
     app: postgres-service
   type: ExternalName

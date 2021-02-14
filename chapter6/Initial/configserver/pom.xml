@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<docker.image.prefix>ostock</docker.image.prefix>
+		<docker.image.prefix>cacofanti</docker.image.prefix>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 	</properties>
 

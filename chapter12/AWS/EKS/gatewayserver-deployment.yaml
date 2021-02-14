@@ -38,8 +38,8 @@ spec:
           value: default
         - name: SERVER_PORT
           value: "8072"
-        image: 81XXXXXXXX3.dkr.ecr.us-east-2.amazonaws.com/ostock/gatewayserver:latest
-        imagePullPolicy: ""
+        image: cacofanti/gatewayserver:chapter12
+        imagePullPolicy: "Always"
         name: gateway
         ports:
         - containerPort: 8072

@@ -34,8 +34,8 @@ spec:
           value: IMSYMMETRIC
         - name: PROFILE
           value: dev
-        image: 81XXXXXXXX3.dkr.ecr.us-east-2.amazonaws.com/ostock/authentication-service:latest
-        imagePullPolicy: ""
+        image: cacofanti/authentication-service:chapter12
+        imagePullPolicy: "Always"
         name: authentication-service
         ports:
         - containerPort: 8082

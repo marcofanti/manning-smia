@@ -19,7 +19,7 @@
     </parent>
 
     <properties>
-	 <docker.image.prefix>ostock</docker.image.prefix>
+	 <docker.image.prefix>cacofanti</docker.image.prefix>
 	</properties>
 
   <modules>

@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: licensing-service
+    profiles:
+      active: dev
+    cloud:
+      config:
+        uri: http://configserver:8071
+        fail-fast: true
+        retry:
+          max-attempts: 20
+          initial-interval: 1500
+  main:
+    allow-bean-definition-overriding: true
